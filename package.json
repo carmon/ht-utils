@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "node-fetch": "^3.2.7"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module"
+}
