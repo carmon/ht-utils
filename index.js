@@ -1,8 +1,10 @@
 import fetch from "node-fetch";
 
-const range = [26313, 27336];
-const total = 1024;
-const sample = 30; 
+import config from "./src/config.js";
+
+const total = config.TOTAL_LEAGUES_IN_DIVISION;
+const sample = config.LEAGUES_TO_SHOW;
+const debug = config.VERBOSE;
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration)); 
 
@@ -20,11 +22,12 @@ const fetchHT = async (id, delayTime) => {
 
 const promises = [];
 let timeout = 0;
+if (debug) console.log(`Adding promises for each league\n`);
 for (let n = 0; n < total; ++n) {
-  const id = range[0] + n;
+  const id = config.STARTING_ID + n;
   if (timeout >= 5000) timeout = 0;
   timeout += n * 10;
-  console.log(`Adding promise for league #${id} with a timeout of ${timeout}`);
+  if (debug) console.log(`Adding promise for league #${id} with a timeout of ${timeout}\n`);
   promises.push(fetchHT(id, timeout));
 }
 
@@ -37,12 +40,10 @@ try {
         lastLeagues.push({ id, position: rankNumber });
       }
     }
-    console.log(leagues);
-    let output = `Hattrick Argentina leagues VI: last ${sample}`;
+    let output = `Hattrick Argentina leagues VI: last ${sample}\n=============================================\n`;
     for (let n = 0; n < lastLeagues.length; ++n) {
       const { id, position } = lastLeagues[n];
-      output += `League with ${id} is in position ${position} of ${total}.
-      `;
+      output += `League with ${id} is in position ${position} of ${total}.\n`;
     }
     console.log(output);
   });

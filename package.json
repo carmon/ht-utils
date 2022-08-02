@@ -1,9 +1,12 @@
 {
+  "name": "ht-utils",
   "dependencies": {
+    "@miroculus/config": "^1.1.7",
     "node-fetch": "^3.2.7"
   },
   "scripts": {
     "start": "node index.js"
   },
-  "type": "module"
+  "type": "module",
+  "author": "Carmon"
 }
