@@ -10,3 +10,4 @@ Currently is implementing a delayed call to avoiding timeouts from Hattrick site
 ### TODO
 
 - Make a script for choosing a country and a division and change it dinamically.
+- Make the fetching stop when first N leagues are already found.
