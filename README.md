@@ -7,7 +7,9 @@ Hattrick script utility to search for last positioned leagues for Argentina's VI
 
 Currently is implementing a delayed call to avoiding timeouts from Hattrick site, so it could take some time to fetch at lower divions (1024+ leagues). Added a timeout limit to fix this (still needs more work).
 
+You can set country, division, starting ID, and numbers of league in the division. 
+
 ### TODO
 
-- Make a script for choosing a country and a division and change it dinamically.
 - Make the fetching stop when first N leagues are already found.
+- Add an option for searching for worst or best leagues in division.
