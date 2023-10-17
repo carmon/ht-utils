@@ -1,11 +1,16 @@
 import fetch from "node-fetch";
 
-import config from "./src/config.js";
+import makeConfig from "./src/config.js";
+
+const league = process.argv.slice(2)[0].replace('--league=', '');
+
+const config = makeConfig(league);
+
+const debug = config.VERBOSE;
+const sample = config.LEAGUES_TO_SHOW;
 
 const country = config.COUNTRY;
-const debug = config.VERBOSE;
 const leagueNumber = config.LEAGUE_NUMBER;
-const sample = config.LEAGUES_TO_SHOW;
 const startingId = config.STARTING_ID;
 const total = config.TOTAL_LEAGUES_IN_DIVISION;
 

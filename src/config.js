@@ -1,17 +1,39 @@
 import loadConfig from "@miroculus/config";
 
-// Country: Argentina
-// V: STARTING_ID: 13220, TOTAL_LEAGUES_IN_DIVISION: 256
-// VI: STARTING_ID: 26313, TOTAL_LEAGUES_IN_DIVISION: 1024
+const leagues = {
+  'arg-V': {
+    COUNTRY: 'Argentina',
+    NUMBER: 'V',
+    STARTING_ID: 13220,
+    TOTAL_LEAGUES_IN_DIVISION: 256
+  },
+  'arg-VI': {
+    COUNTRY: 'Argentina',
+    NUMBER: 'VI',
+    STARTING_ID: 26313,
+    TOTAL_LEAGUES_IN_DIVISION: 1024
+  }
+}
 
 const config = loadConfig({
-  COUNTRY: { type: 'string', default: 'Argentina' },
-  LEAGUE_NUMBER: { type: 'string', default: 'V' },
   LEAGUES_TO_SHOW: { type: 'number', default: 10 },
-  TOTAL_LEAGUES_IN_DIVISION: { type: 'number', default: 256 },
   SEARCH_TYPE: { type: 'string', default: 'worst' },
-  STARTING_ID: { type: 'number', default: 13220 },
   VERBOSE: { type: 'boolean', default: true },
+
+  COUNTRY: { type: 'string' },
+  LEAGUE_NUMBER: { type: 'string' },
+  TOTAL_LEAGUES_IN_DIVISION: { type: 'number' },
+  STARTING_ID: { type: 'number' },
 });
 
-export default config;
+const makeConfig = league => {
+  const leagueConfig = leagues[league];
+  if (!leagueConfig) return null;
+  config.COUNTRY = leagueConfig.COUNTRY;
+  config.LEAGUE_NUMBER = leagueConfig.NUMBER;
+  config.TOTAL_LEAGUES_IN_DIVISION = leagueConfig.TOTAL_LEAGUES_IN_DIVISION;
+  config.STARTING_ID = leagueConfig.STARTING_ID;
+  return config;
+};
+
+export default makeConfig;
